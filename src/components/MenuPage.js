@@ -8,7 +8,7 @@ const MenuPage = () => {
   return (
     <div className="content">
       <h1>메뉴 관리</h1>
-      <InputMenu />
+      {/* <InputMenu label="제품명" placeholder="메뉴를 입력하세요" /> */}
       <div className="wrap-middle">
         <input
           type="text"

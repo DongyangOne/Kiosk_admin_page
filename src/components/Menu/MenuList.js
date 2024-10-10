@@ -1,38 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
+import axios from "axios";
 
 function MenuList() {
-  const menuItems = [
-    {
-      id: 1,
-      name: "아메리카노",
-      price: "3,000",
-      category: "커피",
-      status: "판매중",
-    },
-    // 반복되는 데이터 예시
-    {
-      id: 2,
-      name: "아메리카노",
-      price: "3,000",
-      category: "커피",
-      status: "판매중",
-    },
-    {
-      id: 3,
-      name: "아메리카노",
-      price: "3,000",
-      category: "커피",
-      status: "판매중",
-    },
-    {
-      id: 4,
-      name: "아메리카노",
-      price: "3,000",
-      category: "커피",
-      status: "판매중",
-    },
-  ];
+  const token = localStorage.getItem("token");
+  const [data, setData] = useState([]);
+  const GetMenu = async () => {
+    await axios
+      .get("http://116.39.208.72:8022/api2/menu", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setData(res.data.data);
+      });
+  };
+
+  useEffect(() => {
+    GetMenu();
+  }, []);
 
   return (
     <table className="menu-table">
@@ -49,7 +37,7 @@ function MenuList() {
         </tr>
       </thead>
       <tbody>
-        {menuItems.map((item) => (
+        {data.map((item) => (
           <MenuItem key={item.id} item={item} />
         ))}
       </tbody>

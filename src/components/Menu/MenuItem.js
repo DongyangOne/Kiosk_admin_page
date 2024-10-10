@@ -5,7 +5,7 @@ function MenuItem({ item }) {
     <tr>
       <td>{item.id}</td>
       <td>
-        <img src="image-url-here" alt={item.name} className="menu-img" />
+        <img src={item.img} alt={item.name} className="menu-img" />
       </td>
       <td>{item.name}</td>
       <td>{item.price}</td>

@@ -18,6 +18,7 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           navigate("/main");
+          localStorage.setItem("token", res.data.data.token);
         }
       })
       .catch((err) => {
